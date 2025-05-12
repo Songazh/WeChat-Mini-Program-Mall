@@ -1,0 +1,32 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_java1234_mall_v3?serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+
+weixin:
+  jscode2sessionUrl: https://api.weixin.qq.com/sns/jscode2session
+  appid: wx9aa99bffb447941e
+  secret: c60d7ac7423117d9d2215463be587996
+
+weixinpayconfig:
+  appid: wx9aa99bffb447941e
+  mch_id: 1500625891
+  key: jrBXpy1VPNY0FCFI42EBShLom7KMaRBa
+  url: https://api.mch.weixin.qq.com/pay/unifiedorder
+  notify_url: https://1290-123-112-10-15.ngrok-free.app/weixinpay/notifyUrl
+
+bigTypeImagesFilePath: ./image/bigTypeImgs/
+
+productImagesFilePath: ./image/productImgs/
+
+swiperImagesFilePath: ./image/swiperImgs/
+
+productSwiperImagesFilePath: ./image/productSwiperImgs/
