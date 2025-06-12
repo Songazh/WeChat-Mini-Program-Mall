@@ -1,0 +1,53 @@
+server:
+  address: 0.0.0.0
+  port: 8081
+  servlet:
+    context-path: /
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/db_java1234_mall?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    username: mall_user
+    password: mall_pass
+
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+  configuration:
+    map-underscore-to-camel-case: false
+    auto-mapping-behavior: full
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  mapper-locations: classpath:mybatis/mapper/*.xml
+
+weixin:
+  jscode2sessionUrl: https://api.weixin.qq.com/sns/jscode2session
+  appid: wx9aa99bffb447941e
+  secret: c60d7ac7423117d9d2215463be587996
+
+weixinpayconfig:
+  appid: wx9aa99bffb447941e
+  mch_id: 1500625891
+  key: jrBXpy1VPNY0FCFI42EBShLom7KMaRBa
+  url: https://api.mch.weixin.qq.com/pay/unifiedorder
+  notify_url: http://localhost:8080/weixinpay/notifyUrl
+
+bigTypeImagesFilePath: ./uploads/bigTypeImgs/
+
+productImagesFilePath: ./uploads/productImgs/
+
+swiperImagesFilePath: ./uploads/swiperImgs/
+
+productSwiperImagesFilePath: ./uploads/productSwiperImgs/
+
+# Actuator配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always 

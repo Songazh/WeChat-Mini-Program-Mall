@@ -1,0 +1,15 @@
+{
+  "builder": {
+    "gc": {
+      "defaultKeepStorage": "20GB",
+      "enabled": true
+    }
+  },
+  "experimental": false,
+  "registry-mirrors": [
+    "https://registry.cn-hangzhou.aliyuncs.com",
+    "https://hub-mirror.c.163.com", 
+    "https://mirror.ccs.tencentyun.com",
+    "https://ccr.ccs.tencentyun.com"
+  ]
+} 

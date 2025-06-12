@@ -8,9 +8,9 @@ spring:
   datasource:
     type: com.alibaba.druid.pool.DruidDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/db_java1234_mall?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
+    url: jdbc:mysql://mall-mysql:3306/db_java1234_mall?serverTimezone=Asia/Shanghai&useUnicode=true&characterEncoding=UTF-8
     username: root
-    password: 123456
+    password: root123456
 
 mybatis-plus:
   global-config:
@@ -34,10 +34,20 @@ weixinpayconfig:
   url: https://api.mch.weixin.qq.com/pay/unifiedorder
   notify_url: https://1290-123-112-10-15.ngrok-free.app/weixinpay/notifyUrl
 
-bigTypeImagesFilePath: C:/Users/SH/Desktop/cshi11/image/bigTypeImgs/
+bigTypeImagesFilePath: /app/uploads/bigTypeImgs/
 
-productImagesFilePath: C:/Users/SH/Desktop/cshi11/image/productImgs/
+productImagesFilePath: /app/uploads/productImgs/
 
-swiperImagesFilePath: C:/Users/SH/Desktop/cshi11/image/swiperImgs/
+swiperImagesFilePath: /app/uploads/swiperImgs/
 
-productSwiperImagesFilePath: C:/Users/SH/Desktop/cshi11/image/productSwiperImgs/
+productSwiperImagesFilePath: /app/uploads/productSwiperImgs/
+
+# Actuator配置
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always

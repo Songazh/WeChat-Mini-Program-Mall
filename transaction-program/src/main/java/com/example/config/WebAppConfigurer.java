@@ -47,7 +47,10 @@ public class WebAppConfigurer implements WebMvcConfigurer {
             "/**/*.jpg",
             "/**/*.png",
             "/**/*.jpeg",
-            "/**/*.gif"
+            "/**/*.gif",
+            "/actuator/**",
+            "/health",
+            "/error"
         };
         registry.addInterceptor(sysInterceptor())
                 .addPathPatterns("/**")

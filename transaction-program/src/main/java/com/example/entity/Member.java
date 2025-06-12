@@ -3,6 +3,7 @@ package com.example.entity;
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import com.baomidou.mybatisplus.annotation.TableField;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -27,11 +28,13 @@ public class Member implements Serializable {
     /**
      * 关联微信用户ID(openid)
      */
+    @TableField("user_id")
     private String userId;
 
     /**
      * 会员编号
      */
+    @TableField("member_no")
     private String memberNo;
 
     /**
@@ -42,11 +45,13 @@ public class Member implements Serializable {
     /**
      * 是否付费会员(0:否 1:是)
      */
+    @TableField("is_paid")
     private Boolean isPaid;
 
     /**
      * 会员过期时间
      */
+    @TableField("expire_time")
     private Date expireTime;
 
     /**
@@ -62,15 +67,25 @@ public class Member implements Serializable {
     /**
      * 累计收益
      */
+    @TableField("total_income")
     private BigDecimal totalIncome;
 
     /**
      * 注册时间
      */
+    @TableField("register_time")
     private Date registerTime;
 
     /**
      * 更新时间
      */
+    @TableField("update_time")
     private Date updateTime;
+
+    /**
+     * 获取用户openId
+     */
+    public String getOpenId() {
+        return this.userId;
+    }
 } 

@@ -106,28 +106,49 @@ public class AdminBigTypeController {
     @RequestMapping("/uploadImage")
     public Map<String, Object> uploadImage(MultipartFile file)throws Exception{
         Map<String, Object> resultMap=new HashMap<String,Object>();
+        System.out.println("开始上传文件，上传路径: " + bigTypeImagesFilePath);
+        System.out.println("文件是否为空: " + file.isEmpty());
+        System.out.println("文件大小: " + file.getSize() + " bytes");
+        
         if(!file.isEmpty()){
-            // 获取文件名
-            String fileName = file.getOriginalFilename();
-            // 获取文件的后缀名
-            String suffixName = fileName.substring(fileName.lastIndexOf("."));
-            String newFileName= DateUtil.getCurrentDateStr()+suffixName;
+            try {
+                // 获取文件名
+                String fileName = file.getOriginalFilename();
+                System.out.println("原始文件名: " + fileName);
+                // 获取文件的后缀名
+                String suffixName = fileName.substring(fileName.lastIndexOf("."));
+                String newFileName= DateUtil.getCurrentDateStr()+suffixName;
+                System.out.println("新文件名: " + newFileName);
+                
+                String fullPath = bigTypeImagesFilePath + newFileName;
+                System.out.println("完整保存路径: " + fullPath);
+                
+                File targetFile = new File(fullPath);
+                System.out.println("目标文件路径: " + targetFile.getAbsolutePath());
+                System.out.println("父目录存在: " + targetFile.getParentFile().exists());
+                System.out.println("父目录可写: " + targetFile.getParentFile().canWrite());
 
-            FileUtils.copyInputStreamToFile(file.getInputStream(), new File(bigTypeImagesFilePath+newFileName));
-            resultMap.put("code", 0);
-            resultMap.put("msg", "上传成功");
-            Map<String, Object> dataMap = new HashMap<String, Object>();
-            dataMap.put("title", newFileName);
-            dataMap.put("src", "/image/bigType/"+newFileName);
-            resultMap.put("data", dataMap);
-
-/*
-
-            BigType bigType = bigTypeService.getById(id);
-            bigType.setImage(newFileName);
-            bigTypeService.saveOrUpdate(bigType);
-*/
-
+                FileUtils.copyInputStreamToFile(file.getInputStream(), targetFile);
+                System.out.println("文件保存成功!");
+                System.out.println("保存后文件存在: " + targetFile.exists());
+                System.out.println("保存后文件大小: " + targetFile.length() + " bytes");
+                
+                resultMap.put("code", 0);
+                resultMap.put("msg", "上传成功");
+                Map<String, Object> dataMap = new HashMap<String, Object>();
+                dataMap.put("title", newFileName);
+                dataMap.put("src", "/image/bigTypeImgs/"+newFileName);
+                resultMap.put("data", dataMap);
+            } catch (Exception e) {
+                System.err.println("文件上传失败: " + e.getMessage());
+                e.printStackTrace();
+                resultMap.put("code", 500);
+                resultMap.put("msg", "上传失败: " + e.getMessage());
+            }
+        } else {
+            System.out.println("文件为空，上传失败");
+            resultMap.put("code", 500);
+            resultMap.put("msg", "文件为空");
         }
 
         return resultMap;

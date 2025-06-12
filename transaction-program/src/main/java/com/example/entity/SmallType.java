@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * 商品小类
  */
-@TableName("t_smallType")
+@TableName("t_smalltype")
 @Data
 public class SmallType implements Serializable {
 

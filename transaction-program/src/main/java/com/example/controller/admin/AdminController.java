@@ -40,7 +40,7 @@ public class AdminController {
         if (resultAdmin == null) {
             return R.error("用户名不存在");
         }
-        if (resultAdmin.getPassword().trim().equals(admin.getPassword())) {
+        if (!resultAdmin.getPassword().trim().equals(admin.getPassword())) {
             return R.error("用户名或者密码错误");
         }
         String token = JwtUtils.createJWT("-1", "admin", SystemConstant.JWT_TTL);

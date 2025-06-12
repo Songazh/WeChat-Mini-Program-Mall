@@ -7,7 +7,7 @@
     <resultMap id="bigTypeResult" type="com.example.entity.BigType"></resultMap>
 
     <select id="findById" parameterType="Integer" resultMap="bigTypeResult">
-        select * from t_bigType where id=#{id}
+        select * from t_bigtype where id=#{id}
     </select>
 
 </mapper>

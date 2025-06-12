@@ -4,10 +4,13 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.example.entity.Order;
 import com.example.entity.OrderDetail;
+import com.example.entity.Product;
 import com.example.entity.R;
 import com.example.properties.WeixinpayProperties;
 import com.example.service.IOrderDetailService;
 import com.example.service.IOrderService;
+import com.example.service.IDistributionService;
+import com.example.service.IProductService;
 import com.example.util.*;
 import io.jsonwebtoken.Claims;
 import org.apache.http.HttpResponse;
@@ -16,10 +19,13 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.MessageDigest;
 import java.util.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 /**
  * 订单Controller
@@ -37,6 +43,12 @@ public class OrderController {
     @Autowired
     private WeixinpayProperties weixinpayProperties;
 
+    @Autowired
+    private IDistributionService distributionService;
+
+    @Autowired
+    private IProductService productService;
+
     /**
      * 创建订单，返回订单号
      */
@@ -46,16 +58,43 @@ public class OrderController {
         // 通过token获取openid
         System.out.println("token="+token);
         System.out.println("order="+order);
+        
         // 添加订单到数据库
         Claims claims = JwtUtils.validateJWT(token).getClaims();
         if (claims != null) {
             System.out.println("openid="+claims.getId());
             order.setUserId(claims.getId());
         }
+        
+        // 💡 新增：库存检查和扣减逻辑
+        OrderDetail[] goods = order.getGoods();
+        for (OrderDetail item : goods) {
+            // 查询商品信息
+            Product product = productService.getById(item.getGoodsId());
+            if (product == null) {
+                return R.error("商品不存在：" + item.getGoodsName());
+            }
+            
+            // 检查库存是否充足
+            if (product.getStock() < item.getGoodsNumber()) {
+                return R.error("商品库存不足：" + item.getGoodsName() + " 库存:" + product.getStock() + " 需要:" + item.getGoodsNumber());
+            }
+            
+            // 验证价格是否正确（防止前端篡改价格）
+            if (product.getPrice().compareTo(item.getGoodsPrice()) != 0) {
+                return R.error("商品价格有误：" + item.getGoodsName());
+            }
+            
+            // 扣减库存
+            product.setStock(product.getStock() - item.getGoodsNumber());
+            productService.updateById(product);
+            
+            System.out.println("商品：" + item.getGoodsName() + " 扣减库存：" + item.getGoodsNumber() + " 剩余：" + product.getStock());
+        }
+        
         order.setOrderNo("JAVA" + DateUtil.getCurrentDateStr());
         order.setCreateDate(new Date());
 
-        OrderDetail[] goods = order.getGoods();
         orderService.save(order);
         // 添加订单详情到数据库
         for (int i=0; i< goods.length; i++) {
@@ -63,6 +102,24 @@ public class OrderController {
             orderDetail.setMId(order.getId());
             orderDetailService.save(orderDetail);
         }
+
+        // 暂时注释掉分销相关代码
+        // 获取分销链接码
+        // String linkCode = (String) map.get("linkCode");
+        // 
+        // 创建订单后处理分销关联
+        // if (linkCode != null && !linkCode.isEmpty()) {
+        //     // 假设已经从前端传来的数据中获取了商品ID
+        //     Integer productId = (Integer) map.get("productId");
+        //     
+        //     distributionService.createPurchaseTrace(
+        //         order.getId(),
+        //         productId,
+        //         userId, // 购买者ID
+        //         linkCode
+        //     );
+        // }
+
         Map<String, Object> resultMap = new HashMap<>();
         resultMap.put("orderNo", order.getOrderNo());
         return R.ok(resultMap);
@@ -213,5 +270,16 @@ public class OrderController {
         resultMap.put("page", page);
         resultMap.put("orderList", orderList);
         return R.ok(resultMap);
+    }
+
+    @PostMapping("/payNotify")
+    public void payNotify(HttpServletRequest request, HttpServletResponse response) throws Exception {
+        // ... 现有代码
+        
+        // 暂时注释掉分销相关代码
+        // 支付成功后处理订单分销
+        // distributionService.processOrderDistribution(orderId);
+        
+        // ... 其他代码
     }
 }

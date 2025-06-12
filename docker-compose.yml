@@ -1,0 +1,126 @@
+version: '3.8'
+
+services:
+  # MySQL数据库服务
+  mysql:
+    image: mysql:5.7
+    container_name: mall-mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root123456
+      MYSQL_DATABASE: db_java1234_mall
+      MYSQL_USER: mall_user
+      MYSQL_PASSWORD: mall_pass
+      TZ: Asia/Shanghai
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./db_java1234_mall.sql:/docker-entrypoint-initdb.d/init.sql:ro
+      - ./mysql/conf:/etc/mysql/conf.d
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    networks:
+      - mall-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 20s
+      retries: 10
+
+  # Redis缓存服务
+  redis:
+    image: redis:6.2-alpine
+    container_name: mall-redis
+    restart: always
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - mall-network
+    command: redis-server --appendonly yes
+
+  # Spring Boot后端服务
+  backend:
+    build:
+      context: ./transaction-program
+      dockerfile: Dockerfile
+    container_name: mall-backend
+    restart: always
+    ports:
+      - "8080:8080"
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_started
+    environment:
+      - SPRING_PROFILES_ACTIVE=docker
+      - DB_HOST=mysql
+      - DB_PORT=3306
+      - DB_NAME=db_java1234_mall
+      - DB_USERNAME=mall_user
+      - DB_PASSWORD=mall_pass
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - JWT_SECRET=mall_jwt_secret_key_2024_very_secure
+      - JWT_EXPIRATION=86400
+      - WECHAT_APPID=your_wechat_appid_here
+      - WECHAT_SECRET=your_wechat_secret_here
+      - WECHAT_REDIRECT_URI=http://192.168.10.211/api/oauth/wechat/callback
+    volumes:
+      - ./logs:/app/logs
+      - ./uploads:/app/uploads
+    networks:
+      - mall-network
+
+  # Vue前端构建服务
+  frontend:
+    build:
+      context: ./java1234-mall-vue
+      dockerfile: Dockerfile
+      args:
+        - API_BASE_URL=http://192.168.10.211
+    container_name: mall-frontend
+    restart: always
+    volumes:
+      - frontend_dist:/app/dist
+    networks:
+      - mall-network
+
+  # Nginx反向代理服务
+  nginx:
+    image: nginx:1.21-alpine
+    container_name: mall-nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+      - frontend_dist:/usr/share/nginx/html:ro
+      - ./uploads:/app/uploads:ro
+      - ./logs/nginx:/var/log/nginx
+    depends_on:
+      - backend
+      - frontend
+    networks:
+      - mall-network
+
+volumes:
+  mysql_data:
+    driver: local
+  redis_data:
+    driver: local
+  frontend_dist:
+    driver: local
+  uploads_data:
+    driver: local
+
+networks:
+  mall-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16 

@@ -10,7 +10,7 @@ import java.util.List;
 /**
  * 商品大类
  */
-@TableName("t_bigType")
+@TableName("t_bigtype")
 @Data
 public class BigType implements Serializable {
 

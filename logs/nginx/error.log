@@ -1,0 +1,52 @@
+2025/06/03 06:20:22 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 07:07:57 [warn] 30#30: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 07:07:57 [notice] 30#30: signal process started
+2025/06/03 07:07:57 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 07:14:18 [emerg] 44#44: unknown directive "﻿#" in /etc/nginx/conf.d/mall-admin.conf:2
+2025/06/03 07:16:41 [warn] 50#50: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 07:17:08 [warn] 56#56: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 07:17:08 [notice] 56#56: signal process started
+2025/06/03 07:17:08 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 09:24:28 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 09:28:59 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 09:29:56 [error] 22#22: *1 "/usr/share/nginx/html/image/bigTypeImgs/index.html" is not found (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "HEAD /image/bigTypeImgs/ HTTP/1.1", host: "localhost"
+2025/06/03 09:30:55 [warn] 30#30: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 09:30:55 [notice] 30#30: signal process started
+2025/06/03 09:30:55 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 09:31:27 [error] 36#36: *2 "/usr/share/nginx/html/image/bigTypeImgs/index.html" is not found (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "HEAD /image/bigTypeImgs/ HTTP/1.1", host: "localhost"
+2025/06/03 09:38:54 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 10:02:04 [error] 22#22: *14 open() "/app/static/image/productIntroImgs/1.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/productIntroImgs/1.jpg HTTP/1.1", host: "10.38.245.246", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 10:02:04 [error] 23#23: *16 open() "/app/static/image/productIntroImgs/3.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/productIntroImgs/3.jpg HTTP/1.1", host: "10.38.245.246", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 10:02:04 [error] 22#22: *15 open() "/app/static/image/productIntroImgs/2.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/productIntroImgs/2.jpg HTTP/1.1", host: "10.38.245.246", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 10:42:44 [error] 22#22: *22 open() "/app/static/image/productIntroImgs/1.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "HEAD /image/productIntroImgs/1.jpg HTTP/1.1", host: "10.38.245.246"
+2025/06/03 12:09:24 [error] 23#23: *266 open() "/app/static/image/product/6.png" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/product/6.png HTTP/1.1", host: "10.38.245.246", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 13:24:14 [error] 22#22: *356 open() "/app/static/image/bigTypeImgs/20250603092408000000951.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250603092408000000951.jpg HTTP/1.1", host: "10.38.245.246", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 13:24:34 [error] 22#22: *356 open() "/app/static/image/bigTypeImgs/20250603092431000000026.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250603092431000000026.jpg HTTP/1.1", host: "10.38.245.246", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 13:24:38 [error] 22#22: *356 open() "/app/static/image/bigTypeImgs/20250603092431000000026.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250603092431000000026.jpg HTTP/1.1", host: "10.38.245.246", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 13:24:55 [error] 22#22: *356 open() "/app/static/image/bigTypeImgs/20250603092431000000026.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250603092431000000026.jpg HTTP/1.1", host: "10.38.245.246", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 13:41:51 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 13:54:47 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 13:59:10 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/03 14:18:38 [error] 22#22: *9 open() "/app/static/image/bigTypeImgs/20250603101834000000020.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250603101834000000020.jpg HTTP/1.1", host: "localhost", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 14:18:44 [error] 22#22: *10 open() "/app/static/image/bigTypeImgs/20250603101834000000020.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250603101834000000020.jpg HTTP/1.1", host: "localhost", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 16:13:57 [error] 22#22: *17 open() "/app/static/image/bigTypeImgs/20250603101834000000020.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250603101834000000020.jpg HTTP/1.1", host: "localhost", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 16:14:29 [error] 24#24: *21 open() "/app/static/image/bigTypeImgs/20250603101834000000020.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250603101834000000020.jpg HTTP/1.1", host: "localhost", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 16:14:55 [error] 24#24: *19 open() "/app/static/image/bigTypeImgs/20250604121450000000277.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250604121450000000277.jpg HTTP/1.1", host: "localhost", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 16:14:58 [error] 24#24: *19 open() "/app/static/image/bigTypeImgs/20250604121450000000277.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250604121450000000277.jpg HTTP/1.1", host: "localhost", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 16:15:00 [error] 24#24: *19 open() "/app/static/image/bigTypeImgs/20250604121450000000277.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250604121450000000277.jpg HTTP/1.1", host: "localhost", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 16:15:11 [error] 24#24: *19 open() "/app/static/image/bigTypeImgs/20250604121450000000277.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250604121450000000277.jpg HTTP/1.1", host: "localhost", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 16:15:11 [error] 25#25: *23 open() "/app/static/image/bigTypeImgs/20250604121506000000320.jpg" failed (2: No such file or directory), client: 172.20.0.1, server: localhost, request: "GET /image/bigTypeImgs/20250604121506000000320.jpg HTTP/1.1", host: "localhost", referrer: "https://servicewechat.com/wx9aa99bffb447941e/devtools/page-frame.html"
+2025/06/03 16:34:25 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/04 02:01:11 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/04 02:09:54 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/04 02:09:54 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/04 02:11:20 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/04 02:11:20 [warn] 1#1: conflicting server name "localhost" on 0.0.0.0:80, ignored
+2025/06/04 02:45:17 [notice] 74#74: signal process started
+2025/06/04 02:55:33 [notice] 95#95: signal process started
+2025/06/04 03:00:25 [notice] 123#123: signal process started
+2025/06/04 03:05:31 [notice] 137#137: signal process started
+2025/06/04 03:05:41 [notice] 151#151: signal process started
+2025/06/04 03:52:39 [notice] 49#49: signal process started
+2025/06/04 03:52:43 [notice] 63#63: signal process started
+2025/06/04 03:53:52 [notice] 31#31: signal process started

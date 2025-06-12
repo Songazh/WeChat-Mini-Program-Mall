@@ -11,7 +11,7 @@ import java.util.Date;
 /**
  * 微信用户信息实体
  */
-@TableName("t_wxUserInfo")
+@TableName("t_wxuserinfo")
 @Data
 public class WxUserInfo implements Serializable {
 
